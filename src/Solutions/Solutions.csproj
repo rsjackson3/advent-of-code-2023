@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Input\day2.txt" />
+    <EmbeddedResource Include="Input\day3.txt" />
+    <EmbeddedResource Include="Input\day1.txt" />
+  </ItemGroup>
+
+</Project>

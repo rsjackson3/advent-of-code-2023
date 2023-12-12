@@ -24,10 +24,16 @@ Console.WriteLine($"Day 2 Pt. 2: {day2Part2}");
 var day3Input = Utilities.GetResourceData("day3.txt");
 var day3 = new Day3(day3Input);
 var day3Part1 = day3.SumPartNumbers();
+var day3Part1Regex = day3.Part1Regex();
+
 Console.WriteLine($"Day 3 Pt. 1: {day3Part1}");
+Console.WriteLine($"Day 3 Pt. 1 Regex: {day3Part1Regex}");
 
 var day3Part2 = day3.Part2();
+var day3Part2Regex = day3.Part2Regex();
+
 Console.WriteLine($"Day 3 Pt. 2: {day3Part2}");
+Console.WriteLine($"Day 3 Pt. 2 Regex: {day3Part2Regex}");
 
 Console.WriteLine("\r\nPress any button to exit...");
 

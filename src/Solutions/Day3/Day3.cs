@@ -1,5 +1,8 @@
+using System.Text.RegularExpressions;
+
 namespace AdventOfCode
 {
+    // implemented two solutions, one with Regex and one without
     public class Day3
     {
         public Day3(string input)
@@ -207,5 +210,85 @@ namespace AdventOfCode
         {
             return GetGearNumbers().Sum();
         }
+
+        public int Part1Regex()
+        {
+            string numPattern = @"\d+";
+            var numRegex = new Regex(numPattern);
+
+            string symbolPattern = @"[^0-9.]";
+            var symbolRegex = new Regex(symbolPattern);
+
+            var lines = Input.Split("\r\n");
+
+            var symbolIndexes = new List<(int, int)>();
+            var numInfo = new List<NumberInfo>();
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                symbolIndexes.AddRange(symbolRegex.Matches(lines[i]).Select(m => (i, m.Index)));
+                numInfo.AddRange(numRegex.Matches(lines[i]).Select(m => new NumberInfo(i, m.Index, m.Length, int.Parse(m.Value))));
+            }
+
+            return numInfo.Where(n => symbolIndexes.Any(s => IsAdjacent(n, s))).Sum(n => n.Value);
+        }
+
+        public int Part2Regex()
+        {
+            string numPattern = @"\d+";
+            var numRegex = new Regex(numPattern);
+
+            string starPattern = @"\*";
+            var starRegex = new Regex(starPattern);
+
+            var lines = Input.Split("\r\n");
+
+            var starIndexes = new List<(int, int)>();
+            var numInfo = new List<NumberInfo>();
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                starIndexes.AddRange(starRegex.Matches(lines[i]).Select(m => (i, m.Index)));
+                numInfo.AddRange(numRegex.Matches(lines[i]).Select(m => new NumberInfo(i, m.Index, m.Length, int.Parse(m.Value))));
+            }
+
+            var grouping = starIndexes.GroupBy(s => numInfo.Where(n => IsAdjacent(n, s)).Count());
+
+            var matches = starIndexes.Select(s => GetAdjacentMatches(numInfo, s)).Where(n => n.Count == 2);
+
+            return matches.Sum(inner => inner.Aggregate(1, (acc, numInfo) => acc * numInfo.Value));
+        }
+
+        private bool IsAdjacent(NumberInfo numInfo, (int, int) symbolInfo)
+        {
+            int startIndex = numInfo.Col - 1;
+            int endIndex = numInfo.Col + numInfo.Length;
+
+            return Math.Abs(numInfo.Row - symbolInfo.Item1) <= 1 && symbolInfo.Item2 >= startIndex && symbolInfo.Item2 <= endIndex;
+        }
+
+        private List<NumberInfo> GetAdjacentMatches(List<NumberInfo> numInfo, (int, int) symbolInfo)
+        {
+            return numInfo.Where(n => IsAdjacent(n, symbolInfo)).ToList();
+        }
+    }
+
+    public class NumberInfo
+    {
+        public NumberInfo(int row, int col, int length, int value)
+        {
+            Row = row;
+            Col = col;
+            Length = length;
+            Value = value;
+        }
+
+        public int Row { get; }
+
+        public int Col { get; }
+
+        public int Length { get; }
+
+        public int Value { get; }
     }
 }

@@ -31,4 +31,24 @@ public class Day3Tests
 
         Assert.AreEqual(467835, sum);
     }
+
+    [TestMethod]
+    public void Part1RegexTest()
+    {
+        var day3 = new Day3(Input);
+
+        var sum = day3.Part1Regex();
+
+        Assert.AreEqual(4361, sum);
+    }
+
+    [TestMethod]
+    public void Part2RegexTest()
+    {
+        var day3 = new Day3(Input);
+
+        var sum = day3.Part2Regex();
+
+        Assert.AreEqual(467835, sum);
+    }
 }

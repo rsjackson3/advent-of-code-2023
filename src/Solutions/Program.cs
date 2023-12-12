@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using AdventOfCode;
+using System.Diagnostics;
+
+var stopwatch = new Stopwatch();
 
 var input = Utilities.GetResourceData("day1.txt");
 var day1 = new Day1(input);
@@ -34,6 +37,23 @@ var day3Part2Regex = day3.Part2Regex();
 
 Console.WriteLine($"Day 3 Pt. 2: {day3Part2}");
 Console.WriteLine($"Day 3 Pt. 2 Regex: {day3Part2Regex}");
+
+var day4Input = Utilities.GetResourceData("day4.txt");
+var day4 = new Day4(day4Input);
+
+
+var day4Part1 = day4.Part1();
+Console.WriteLine($"Day 4 Pt. 1: {day4Part1}");
+
+stopwatch.Start();
+var day4Part2 = day4.Part2();
+stopwatch.Stop();
+Console.WriteLine($"Day 4 Pt. 2: {day4Part2}. Time: {stopwatch.Elapsed.TotalMilliseconds}");
+
+stopwatch.Restart();
+var day4Part2Optimized = day4.Part2Optimized();
+stopwatch.Stop();
+Console.WriteLine($"Day 4 Pt. 2 Optimized: {day4Part2Optimized}. Time: {stopwatch.Elapsed.TotalMilliseconds}");
 
 Console.WriteLine("\r\nPress any button to exit...");
 

@@ -13,6 +13,7 @@
     <EmbeddedResource Include="TestInput\day1.txt" />
     <EmbeddedResource Include="TestInput\day2.txt" />
     <EmbeddedResource Include="TestInput\day3.txt" />
+    <EmbeddedResource Include="TestInput\day4.txt" />
   </ItemGroup>
 
   <ItemGroup>

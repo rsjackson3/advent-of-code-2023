@@ -55,6 +55,14 @@ var day4Part2Optimized = day4.Part2Optimized();
 stopwatch.Stop();
 Console.WriteLine($"Day 4 Pt. 2 Optimized: {day4Part2Optimized}. Time: {stopwatch.Elapsed.TotalMilliseconds}");
 
+var day5Input = Utilities.GetResourceData("day5.txt");
+var day5 = new Day5(day5Input);
+stopwatch.Restart();
+var day5Part1 = day5.GetLowestLocation();
+stopwatch.Stop();
+
+Console.WriteLine($"Day 5 Pt. 1: {day5Part1}. Time: {stopwatch.Elapsed.TotalMilliseconds}");
+
 Console.WriteLine("\r\nPress any button to exit...");
 
 Console.ReadKey();

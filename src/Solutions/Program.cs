@@ -63,6 +63,13 @@ var day5Part2 = day5.Part2();
 stopwatch.Stop();
 Console.WriteLine($"Day 5 Pt. 2: {day5Part2}. Time: {stopwatch.Elapsed.TotalMilliseconds}");
 
+var day6 = new Day6(Utilities.GetResourceData("day6.txt"));
+var day6Part1 = day6.Part1();
+var day6Part2 = day6.Part2();
+
+Console.WriteLine($"Day 6 Pt. 1: {day6Part1}");
+Console.WriteLine($"Day 6 Pt. 2: {day6Part2}");
+
 Console.WriteLine("\r\nPress any button to exit...");
 
 Console.ReadKey();
